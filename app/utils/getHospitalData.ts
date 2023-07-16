@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import path from 'path';
 
 export interface StaticHospitalData {
+  id: number;
   name: string;
   address: string;
   gpa: number;
@@ -14,6 +15,7 @@ export const getHospitalData = async () => {
   const hospitalsFile = await fs.readFile(filePath);
   return readCsv<StaticHospitalData>(hospitalsFile, {
     separator: ';',
-    mapValues: ({ header, value }) => (['gpa', 'seats'].includes(header) ? Number(value) : value),
+    mapValues: ({ header, value }) =>
+      ['id', 'gpa', 'seats'].includes(header) ? Number(value) : value,
   });
 };

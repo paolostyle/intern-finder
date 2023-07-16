@@ -1,4 +1,4 @@
-import { Table } from './components/Table';
+import { Table } from './components/Table/Table';
 import { getCompleteData } from './getCompleteData';
 
 export default async function Home() {
