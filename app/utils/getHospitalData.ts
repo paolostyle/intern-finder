@@ -6,6 +6,7 @@ export interface StaticHospitalData {
   name: string;
   address: string;
   gpa: number;
+  seats: number;
 }
 
 export const getHospitalData = async () => {
@@ -13,6 +14,6 @@ export const getHospitalData = async () => {
   const hospitalsFile = await fs.readFile(filePath);
   return readCsv<StaticHospitalData>(hospitalsFile, {
     separator: ';',
-    mapValues: ({ header, value }) => (header === 'gpa' ? Number(value) : value),
+    mapValues: ({ header, value }) => (['gpa', 'seats'].includes(header) ? Number(value) : value),
   });
 };

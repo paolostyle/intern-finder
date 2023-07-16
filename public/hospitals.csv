@@ -1,37 +1,40 @@
-name;address;gpa
-Szpital Kliniczny Dzieciątka Jezus;ul. Lindleya 4, 02-005 Warszawa;4.18
-Samodzielny Publiczny Centralny Szpital Kliniczny;ul. Banacha 1 A, 02-097 Warszawa;4.05
-Szpital Bielański im ks. Jerzego Popiełuszki SPZOZ;ul. Cegłowska 80, 01-809 Warszawa;4.23
-Szpital Wolski im. dr Anny Gostyńskiej SPZOZ;ul. Kasprzaka 17, 01-211 Warszawa;4.76
-Mazowiecki Szpital Bródnowski Sp. z o.o.;ul. Kondratowicza 8, 03-242 Warszawa;4.30
-Centralny Szpital Kliniczny MSWiA;ul. Wołoska 137, 02-507 Warszawa;4.33
-Szpital Grochowski im. Rafała Masztaka Sp. z o.o.;ul. Grenadierów 51/59, 04-073 Warszawa;4.58
-Szpital Praski p.w. Przemienienia Pańskiego Sp. z o. o.;Al. Solidarności 67, 03-401 Warszawa;4.38
-Samodzielny Publiczny Szpital Kliniczny im. prof. W. Orłowskiego CMKP;ul. Czerniakowska 231, 00-416 Warszawa;4.31
-Wojewódzki Szpital Chirurgii Urazowej św. Anny SPZOZ;ul. Barska 16/20, 02-315 Warszawa;4.42
-Wojskowy Instytut Medyczny;ul. Szaserów 128, 00-909 Warszawa;4.15
-Szpital SOLEC Sp. z o.o.;ul. Solec 93, 00-382 Warszawa;4.18
-Szpital Czerniakowski SPZOZ;ul. Stępińska 19/25, 00-739 Warszawa;4.48
-Międzyleski Szpital Specjalistyczny;ul. Bursztynowa 2, 04-749 Warszawa;4.17
-SP Specjalistyczny Szpital Zachodni im. Jana Pawła II;ul. Daleka 11, 05-825 Grodzisk Mazowiecki;4.05
-Samodzielny Publiczny Zespół Opieki Zdrowotnej;ul. Szpitalna 37, 05-300 Mińsk Mazowiecki;3.81
-Nowodworskie Centrum Medyczne;ul. Miodowa 2, 05-100 Nowy Dwór Mazowiecki;4.03
-Powiatowe Centrum Zdrowia Sp. z o.o.;ul. Batorego 44, 05-400 Otwock;4.05
-Szpital Kolejowy im dr med. Włodzimierza Roeflera SPZOZ;ul. Warsztatowa 1, 05-800 Pruszków;4.14
-Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej w Płońsku;ul. Sienkiewicza 7, 09-100 Płońsk;3.09
-Zespół Opieki Zdrowotnej Szpital Powiatowy w Sochaczewie;ul. Batalionów Chłopskich 3/7, 96-580 Sochaczew;3.71
-Szpital Powiatowy w Wołominie Samodzielny Zespół Publicznych ZOZ;ul. Gdyńska 1/3, 05-200 Wołomin;3.97
-Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej;ul. KEN 1, 07-200 Wyszków;3.88
-Specjalistyczny Szpital Wojewódzki w Ciechanowie;ul. Powstańców Wlkp. 2, Ciechanów;3.62
-Samodzielny Publiczny Zakład Opieki Zdrowotnej w Garwolinie;ul. Lubelska 50, Garwolin;3.70
-Powiatowe Centrum Medyczne w Grójcu Sp. z o.o.;ul. Ks. Piotra Skargi 10, Grójec;3.79
-Mazowiecki Szpital Specjalistyczny im. dr Józefa Psarskiego;ul. Jana Pawła II 120 A, Ostrołęka;3.33
-Szpital Powiatowy SPZZOZ w Ostrowi Mazowieckiej;ul. Dubois 68, Ostrów Mazowiecka;3.43
-Szpital Powiatowy w Pułtusku Sp. z o. o.;ul. Teofila Kwiatkowskiego 19, 06-102 Pułtusk;3.11
-Wojewódzki Szpital Specjalistyczny w Radomiu;ul. Aleksandrowicza 5, Radom;3.35
-Radomski Szpital Specjalistyczny im. dr Tytusa Chałubińskiego;ul. Lekarska 4 Radom;3.24
-Samodzielny Publiczny Zakład Opieki Zdrowotnej w Siedlcach;ul. Kilińskiego 29, Siedlce;2.97
-Mazowiecki Szpital Wojewódzki w Siedlcach sp. z o. o.;ul. Ks. Józefa Poniatowskiego 26, Siedlce;3.16
-Samodzielny Publiczny Zakład Opieki Zdrowotnej w Sokołowie Podlaskim;ul. Ks. J. Bosko 5;3.13
-Samodzielny Publiczny Zakład Opieki Zdrowotnej w Węgrowie;ul. Kościuszki 15, Węgrów;3.49
-Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej;ul. Gen. Wł. Sikorskiego 10 26-901 Kozienice;3.34
+name;address;gpa;seats
+Szpital Wolski im. dr Anny Gostyńskiej SPZOZ;ul. Kasprzaka 17, 01-211 Warszawa;4.76;21
+Szpital Grochowski im. Rafała Masztaka Sp. z o.o.;ul. Grenadierów 51/59, 04-073 Warszawa;4.58;7
+Szpital Czerniakowski SPZOZ;ul. Stępińska 19/25, 00-739 Warszawa;4.48;14
+Wojewódzki Szpital Chirurgii Urazowej św. Anny SPZOZ;ul. Barska 16/20, 02-315 Warszawa;4.42;10
+Szpital Praski p.w. Przemienienia Pańskiego Sp. z o. o.;al. Solidarności 67, 03-401 Warszawa;4.38;30
+Centralny Szpital Kliniczny MSWiA;ul. Wołoska 137, 02-507 Warszawa;4.33;60
+Samodzielny Publiczny Szpital Kliniczny im. prof. W. Orłowskiego CMKP;ul. Czerniakowska 231, 00-416 Warszawa;4.31;28
+Mazowiecki Szpital Bródnowski Sp. z o.o.;ul. Kondratowicza 8, 03-242 Warszawa;4.30;21
+Szpital Bielański im ks. Jerzego Popiełuszki SPZOZ;ul. Cegłowska 80, 01-809 Warszawa;4.23;35
+Szpital Kliniczny Dzieciątka Jezus;ul. Lindleya 4, 02-005 Warszawa;4.18;38
+Warszawski Szpital Południowy Sp. z o.o.;ul. Pileckiego 99, 02-781 Warszawa;4.18;16
+Międzyleski Szpital Specjalistyczny;ul. Bursztynowa 2, 04-749 Warszawa;4.17;30
+Wojskowy Instytut Medyczny;ul. Szaserów 128, 00-909 Warszawa;4.15;35
+Szpital Kolejowy im dr med. Włodzimierza Roeflera SPZOZ;ul. Warsztatowa 1, 05-800 Pruszków;4.14;10
+Samodzielny Publiczny Centralny Szpital Kliniczny;ul. Banacha 1 A, 02-097 Warszawa;4.05;85
+SP Specjalistyczny Szpital Zachodni im. Jana Pawła II;ul. Daleka 11, 05-825 Grodzisk Mazowiecki;4.05;21
+Powiatowe Centrum Zdrowia Sp. z o.o.;ul. Batorego 44, 05-400 Otwock;4.05;14
+Nowodworskie Centrum Medyczne;ul. Miodowa 2, 05-100 Nowy Dwór Mazowiecki;4.03;14
+Szpital Powiatowy w Wołominie Samodzielny Zespół Publicznych ZOZ;ul. Gdyńska 1/3, 05-200 Wołomin;3.97;28
+Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej;ul. KEN 1, 07-200, Wyszków;3.88;10
+Samodzielny Publiczny Zespół Opieki Zdrowotnej;ul. Szpitalna 37, 05-300 Mińsk Mazowiecki;3.81;30
+Powiatowe Centrum Medyczne w Grójcu Sp. z o.o.;ul. Ks. Piotra Skargi 10, Grójec;3.79;21
+Zespół Opieki Zdrowotnej Szpital Powiatowy w Sochaczewie;ul. Batalionów Chłopskich 3/7, 96-580 Sochaczew;3.71;21
+Samodzielny Publiczny Zakład Opieki Zdrowotnej w Garwolinie;ul. Lubelska 50, Garwolin;3.70;20
+Specjalistyczny Szpital Wojewódzki w Ciechanowie;ul. Powstańców Wlkp. 2, Ciechanów;3.62;17
+Samodzielny Publiczny Zakład Opieki Zdrowotnej w Węgrowie;ul. Kościuszki 15, Węgrów;3.49;10
+Szpital Powiatowy SPZZOZ w Ostrowi Mazowieckiej;ul. Dubois 68, Ostrów Mazowiecka;3.43;7
+Wojewódzki Szpital Specjalistyczny w Radomiu;ul. Aleksandrowicza 5, Radom;3.35;21
+Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej;ul. Gen. Wł. Sikorskiego 10, 26-901 Kozienice;3.34;14
+Mazowiecki Szpital Specjalistyczny im. dr Józefa Psarskiego;ul. Jana Pawła II 120 A, Ostrołęka;3.33;14
+SPZZOZ w Przasnyszu;ul. Sadowa 9, 06-300 Przasnysz;3.25;21
+Radomski Szpital Specjalistyczny im. dr Tytusa Chałubińskiego;ul. Lekarska 4, Radom;3.24;14
+Mazowiecki Szpital Wojewódzki w Siedlcach sp. z o. o.;ul. Ks. Józefa Poniatowskiego 26, Siedlce;3.16;33
+Szpital Powiatowy w Pułtusku Sp. z o. o.;ul. Teofila Kwiatkowskiego 19, 06-102 Pułtusk;3.11;20
+Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej w Płońsku;ul. Sienkiewicza 7, 09-100 Płońsk;3.09;28
+Samodzielny Publiczny Zakład Opieki Zdrowotnej w Siedlcach;ul. Kilińskiego 29, Siedlce;2.97;14
+Samodzielny Publiczny Zakład Opieki Zdrowotnej w Mławie;ul. Anny Dobrskiej 1, 06-500 Mława;3.56;7
+Samodzielny Publiczny Zespół Zakładów Opieki Zdrowotnej w Lipsku;ul. Śniadeckiego 2, 27-300 Lipsko n. Wisłą;3.46;7
+Zespół Zakładów w Makowie Mazowieckim;ul. Witosa 2, 06-200 Maków Mazowiecki;3.74;14

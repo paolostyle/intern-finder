@@ -2,6 +2,7 @@
 
 import { HospitalData } from '@/getCompleteData';
 import {
+  SortDirection,
   SortingState,
   createColumnHelper,
   flexRender,
@@ -32,11 +33,6 @@ const columns = [
     header: 'Czas dojazdu (samochodem)',
     cell: ({ row }) => row.original.driveData?.duration.text,
   }),
-  columnHelper.accessor('transitData.distance.value', {
-    id: 'transitDistance',
-    header: 'Odległość (komunikacją)',
-    cell: ({ row }) => row.original.transitData?.distance.text,
-  }),
   columnHelper.accessor('transitData.duration.value', {
     id: 'transitTime',
     header: 'Czas dojazdu (komunikacją)',
@@ -45,7 +41,23 @@ const columns = [
   columnHelper.accessor('gpa', {
     header: 'Próg',
   }),
+  columnHelper.accessor('seats', {
+    header: 'Miejsc',
+  }),
 ];
+
+const SortingIcons = ({ sortedState }: { sortedState: SortDirection | false }) => {
+  const getClasses = (desiredState: SortDirection | false) =>
+    clsx('h-4 w-4', sortedState === desiredState ? 'swap-on' : 'swap-off');
+
+  return (
+    <div className="swap swap-active">
+      <ArrowSmallDownIcon className={getClasses('asc')} />
+      <ArrowSmallUpIcon className={getClasses('desc')} />
+      <ArrowsUpDownIcon className={getClasses(false)} />
+    </div>
+  );
+};
 
 interface Props {
   data: HospitalData[];
@@ -71,29 +83,20 @@ export const Table = ({ data }: Props) => {
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => {
-              const sortedState = header.column.getIsSorted();
-              return (
-                <th key={header.id}>
-                  <div
-                    className={clsx(
-                      header.column.getCanSort() && 'cursor-pointer select-none',
-                      'flex',
-                    )}
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                    {sortedState === 'asc' ? (
-                      <ArrowSmallDownIcon className="ml-2 h-4 w-4" />
-                    ) : sortedState === 'desc' ? (
-                      <ArrowSmallUpIcon className="ml-2 h-4 w-4" />
-                    ) : (
-                      <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-                    )}
-                  </div>
-                </th>
-              );
-            })}
+            {headerGroup.headers.map((header) => (
+              <th key={header.id}>
+                <div
+                  className={clsx(
+                    header.column.getCanSort() && 'cursor-pointer select-none',
+                    'flex gap-2',
+                  )}
+                  onClick={header.column.getToggleSortingHandler()}
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  <SortingIcons sortedState={header.column.getIsSorted()} />
+                </div>
+              </th>
+            ))}
           </tr>
         ))}
       </thead>

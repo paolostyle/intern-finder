@@ -37,7 +37,7 @@ export interface HospitalData extends StaticHospitalData {
 }
 
 export const getCompleteData = async (): Promise<HospitalData[]> => {
-  const origin = '';
+  const origin = 'ul. Kacpra Karlińskiego 2a, 01-262 Warszawa';
   const arrivalTime = getNextDayOfTheWeek({
     weekday: DayOfTheWeek.Monday,
     hour: 8,
