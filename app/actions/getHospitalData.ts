@@ -1,5 +1,7 @@
-import readCsv from 'neat-csv';
+'use server';
+
 import fs from 'fs-extra';
+import readCsv from 'neat-csv';
 import path from 'path';
 
 export interface StaticHospitalData {

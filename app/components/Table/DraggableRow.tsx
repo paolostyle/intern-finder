@@ -1,9 +1,9 @@
-import { HospitalData } from '@/getCompleteData';
 import { Row, flexRender } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { GripIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { HospitalData } from './types';
 
 type Props = {
   row: Row<HospitalData>;

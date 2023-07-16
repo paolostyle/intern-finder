@@ -1,11 +1,10 @@
 import { DistanceMatrixResponseData, TravelMode } from '@googlemaps/google-maps-services-js';
-import type { Dayjs } from 'dayjs';
 
 interface DistanceMatrixParams {
   origins: string | string[];
   destinations: string | string[];
-  arrivalTime?: Dayjs;
-  departureTime?: Dayjs;
+  arrivalTimestamp?: number;
+  departureTimestamp?: number;
   mode?: TravelMode;
 }
 
@@ -15,8 +14,8 @@ const concatLocations = (locations: string | string[]) =>
 export const getDistances = async ({
   origins,
   destinations,
-  arrivalTime,
-  departureTime,
+  arrivalTimestamp,
+  departureTimestamp,
   mode = TravelMode.driving,
 }: DistanceMatrixParams): Promise<DistanceMatrixResponseData> => {
   const queryParams: Record<string, string> = {
@@ -27,12 +26,12 @@ export const getDistances = async ({
     key: process.env.GOOGLE_MAPS_API_KEY!,
   };
 
-  if (mode === TravelMode.transit && arrivalTime) {
-    queryParams.arrival_time = String(arrivalTime.unix());
+  if (mode === TravelMode.transit && arrivalTimestamp) {
+    queryParams.arrival_time = String(arrivalTimestamp);
   }
 
-  if (mode === TravelMode.driving && departureTime) {
-    queryParams.departure_time = String(departureTime.unix());
+  if (mode === TravelMode.driving && departureTimestamp) {
+    queryParams.departure_time = String(departureTimestamp);
   }
 
   const searchParams = new URLSearchParams(queryParams);

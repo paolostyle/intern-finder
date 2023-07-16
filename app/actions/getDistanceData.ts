@@ -7,9 +7,9 @@ import {
   Status,
   TravelMode,
 } from '@googlemaps/google-maps-services-js';
-import { getDistances } from './utils/getDistance';
-import { StaticHospitalData, getHospitalData } from './utils/getHospitalData';
-import { DayOfTheWeek, getNextDayOfTheWeek } from './utils/getNextDayOfTheWeek';
+import { getDistances } from '../utils/getDistance';
+import { getTimestampForNextWeekday } from '../utils/getTimestampForNextWeekday';
+import { StaticHospitalData } from './getHospitalData';
 
 const negate =
   <A extends unknown[]>(fn: (...args: A) => boolean): ((...args: A) => boolean) =>
@@ -25,31 +25,29 @@ const mapToDistanceAndDuration = (apiResponseData: DistanceMatrixResponseData[])
     ),
   );
 
-export interface HospitalData extends StaticHospitalData {
-  driveData: {
+export interface DistanceData {
+  hospitalId: number;
+  driveData?: {
     distance: Distance;
     duration: Duration;
   } | null;
-  transitData: {
+  transitData?: {
     distance: Distance;
     duration: Duration;
   } | null;
 }
 
-export const getCompleteData = async (): Promise<HospitalData[]> => {
-  const origin = 'ul. Kacpra Karlińskiego 2a, 01-262 Warszawa';
-  const arrivalTime = getNextDayOfTheWeek({
-    weekday: DayOfTheWeek.Monday,
-    hour: 8,
-    gapTimeInMinutes: 15,
-  });
-  const departureTime = getNextDayOfTheWeek({
-    weekday: DayOfTheWeek.Monday,
-    hour: 6,
-    minute: 30,
-  });
+export const getDistanceData = async (
+  formData: FormData,
+  hospitals: StaticHospitalData[],
+): Promise<DistanceData[]> => {
+  const origin = formData.get('origin') as string;
+  const dayOfTheWeek = Number(formData.get('dayOfTheWeek') as string);
+  const arrivalTime = formData.get('arrivalTime') as string;
+  const departureTime = formData.get('departureTime') as string;
 
-  const hospitals = await getHospitalData();
+  const arrivalTimestamp = getTimestampForNextWeekday(dayOfTheWeek, arrivalTime);
+  const departureTimestamp = getTimestampForNextWeekday(dayOfTheWeek, departureTime);
 
   const predicates = [isHospitalInWarsaw, isNotHospitalInWarsaw];
   const modes = [TravelMode.driving, TravelMode.transit];
@@ -58,8 +56,8 @@ export const getCompleteData = async (): Promise<HospitalData[]> => {
       getDistances({
         destinations: hospitals.filter(predicate).map((hospital) => hospital.address),
         origins: origin,
-        arrivalTime,
-        departureTime,
+        arrivalTimestamp,
+        departureTimestamp,
         mode,
       }),
     ),
@@ -69,7 +67,7 @@ export const getCompleteData = async (): Promise<HospitalData[]> => {
   const transitData = mapToDistanceAndDuration(await Promise.all(transitModeRequests));
 
   return hospitals.map((hospital, index) => ({
-    ...hospital,
+    hospitalId: hospital.id,
     driveData: drivingData[index],
     transitData: transitData[index],
   }));

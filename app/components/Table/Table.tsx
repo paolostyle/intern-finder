@@ -1,6 +1,7 @@
 'use client';
 
-import { HospitalData } from '@/getCompleteData';
+import { DistanceData } from '@/actions/getDistanceData';
+import { StaticHospitalData } from '@/actions/getHospitalData';
 import {
   SortingState,
   createColumnHelper,
@@ -10,11 +11,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { SortingIcons } from './SortingIcon';
 import { DraggableRow } from './DraggableRow';
+import { SortingIcons } from './SortingIcon';
+import { HospitalData } from './types';
 
 const columnHelper = createColumnHelper<HospitalData>();
 
@@ -68,12 +70,34 @@ const columns = [
 ];
 
 interface Props {
-  data: HospitalData[];
+  hospitalsData: StaticHospitalData[];
+  distanceData?: Record<number, DistanceData>;
 }
 
-export const Table = ({ data }: Props) => {
-  const [orderedData, setOrderedData] = useState(data);
+export const Table = ({ hospitalsData, distanceData }: Props) => {
+  const updateHospitalsData = useCallback(
+    (currentHospitalData: HospitalData[]) => {
+      return distanceData
+        ? currentHospitalData.map((hospital) => {
+            const { hospitalId, ...hospitalDistanceData } = distanceData[hospital.id];
+            return {
+              ...hospital,
+              ...hospitalDistanceData,
+            };
+          })
+        : currentHospitalData;
+    },
+    [distanceData],
+  );
+
+  const [orderedData, setOrderedData] = useState<HospitalData[]>(
+    updateHospitalsData(hospitalsData),
+  );
   const [sorting, setSorting] = useState<SortingState>([]);
+
+  useEffect(() => {
+    setOrderedData((currentData) => updateHospitalsData(currentData));
+  }, [distanceData, updateHospitalsData]);
 
   const reorderRow = (draggedRowIndex: number, targetRowIndex: number) => {
     orderedData.splice(targetRowIndex, 0, orderedData.splice(draggedRowIndex, 1)[0]);

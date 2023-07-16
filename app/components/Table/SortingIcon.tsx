@@ -1,12 +1,12 @@
-import {
-  ArrowDown01Icon,
-  ArrowUp10Icon,
-  ArrowUpDownIcon,
-  ArrowDownAZIcon,
-  ArrowUpZAIcon,
-} from 'lucide-react';
 import { SortDirection } from '@tanstack/react-table';
 import clsx from 'clsx';
+import {
+  ArrowDown01Icon,
+  ArrowDownAZIcon,
+  ArrowUp10Icon,
+  ArrowUpDownIcon,
+  ArrowUpZAIcon,
+} from 'lucide-react';
 
 type SortedState = SortDirection | false;
 
