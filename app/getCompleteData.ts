@@ -20,12 +20,12 @@ const isNotHospitalInWarsaw = negate(isHospitalInWarsaw);
 
 const mapToDistanceAndDuration = (apiResponseData: DistanceMatrixResponseData[]) =>
   apiResponseData.flatMap(({ rows }) =>
-    rows[0].elements.map(({ status, distance, duration }) =>
-      status === Status.OK ? { distance, duration } : null,
+    rows[0].elements.map(({ status, distance, duration, duration_in_traffic }) =>
+      status === Status.OK ? { distance, duration: duration_in_traffic ?? duration } : null,
     ),
   );
 
-interface HospitalData extends StaticHospitalData {
+export interface HospitalData extends StaticHospitalData {
   driveData: {
     distance: Distance;
     duration: Duration;
@@ -40,8 +40,13 @@ export const getCompleteData = async (): Promise<HospitalData[]> => {
   const origin = '';
   const arrivalTime = getNextDayOfTheWeek({
     weekday: DayOfTheWeek.Monday,
-    hour: 3,
+    hour: 8,
     gapTimeInMinutes: 15,
+  });
+  const departureTime = getNextDayOfTheWeek({
+    weekday: DayOfTheWeek.Monday,
+    hour: 6,
+    minute: 30,
   });
 
   const hospitals = await getHospitalData();
@@ -54,6 +59,7 @@ export const getCompleteData = async (): Promise<HospitalData[]> => {
         destinations: hospitals.filter(predicate).map((hospital) => hospital.address),
         origins: origin,
         arrivalTime,
+        departureTime,
         mode,
       }),
     ),
