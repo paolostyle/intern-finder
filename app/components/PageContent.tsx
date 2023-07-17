@@ -3,10 +3,10 @@
 import { DistanceData, getDistanceData } from '@/actions/getDistanceData';
 import { StaticHospitalData } from '@/actions/getHospitalData';
 import { useState } from 'react';
+import { mapToObj } from 'remeda';
 import { Settings } from './Settings';
 import { DnDTable } from './Table/DnDTable';
 import { useHospitalsTable } from './useHospitalsTable';
-import { mapToObj } from 'remeda';
 
 interface Props {
   hospitalsData: StaticHospitalData[];
@@ -28,6 +28,7 @@ export const PageContent = ({ hospitalsData }: Props) => {
             ]),
           );
         }}
+        applySorting={applySorting}
       />
       <DnDTable table={table} reorderRow={reorderRow} />
     </>

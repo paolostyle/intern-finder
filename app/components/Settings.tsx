@@ -4,9 +4,10 @@ import { HelpCircleIcon } from 'lucide-react';
 
 interface Props {
   onSubmit: (formData: FormData) => void;
+  applySorting: () => void;
 }
 
-export const Settings = ({ onSubmit }: Props) => {
+export const Settings = ({ onSubmit, applySorting }: Props) => {
   return (
     <div tabIndex={0} className="collapse collapse-arrow border-base-300 bg-base-200">
       <input type="checkbox" defaultChecked />
@@ -81,9 +82,14 @@ export const Settings = ({ onSubmit }: Props) => {
               />
             </div>
           </div>
-          <button type="submit" className="btn btn-primary btn-sm self-start">
-            Wyślij
-          </button>
+          <div className="flex gap-2 items-start">
+            <button type="submit" className="btn btn-primary btn-sm">
+              Wyślij
+            </button>
+            <button type="button" onClick={applySorting} className="btn btn-secondary btn-sm">
+              Zapisz sortowanie
+            </button>
+          </div>
         </form>
       </div>
     </div>

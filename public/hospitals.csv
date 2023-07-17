@@ -12,8 +12,8 @@ id;name;address;gpa;seats
 11;Warszawski Szpital Południowy Sp. z o.o.;ul. Pileckiego 99, 02-781 Warszawa;4.18;16
 12;Międzyleski Szpital Specjalistyczny;ul. Bursztynowa 2, 04-749 Warszawa;4.17;30
 13;Wojskowy Instytut Medyczny;ul. Szaserów 128, 00-909 Warszawa;4.15;35
-14;Szpital Kolejowy im dr med. Włodzimierza Roeflera SPZOZ;ul. Warsztatowa 1, 05-800 Pruszków;4.14;10
-15;Samodzielny Publiczny Centralny Szpital Kliniczny;ul. Banacha 1 A, 02-097 Warszawa;4.05;85
+14;Samodzielny Publiczny Centralny Szpital Kliniczny;ul. Banacha 1A, 02-097 Warszawa;4.05;85
+15;Szpital Kolejowy im dr med. Włodzimierza Roeflera SPZOZ;ul. Warsztatowa 1, 05-800 Pruszków;4.14;10
 16;SP Specjalistyczny Szpital Zachodni im. Jana Pawła II;ul. Daleka 11, 05-825 Grodzisk Mazowiecki;4.05;21
 17;Powiatowe Centrum Zdrowia Sp. z o.o.;ul. Batorego 44, 05-400 Otwock;4.05;14
 18;Nowodworskie Centrum Medyczne;ul. Miodowa 2, 05-100 Nowy Dwór Mazowiecki;4.03;14
