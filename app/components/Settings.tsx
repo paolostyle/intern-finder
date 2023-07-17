@@ -1,6 +1,16 @@
 'use client';
 
 import { HelpCircleIcon } from 'lucide-react';
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+  return (
+    <button type="submit" className="btn btn-primary btn-sm w-24" disabled={pending}>
+      {pending ? <span className="loading loading-spinner" /> : <span>Wyślij</span>}
+    </button>
+  );
+};
 
 interface Props {
   onSubmit: (formData: FormData) => void;
@@ -8,6 +18,7 @@ interface Props {
 }
 
 export const Settings = ({ onSubmit, applySorting }: Props) => {
+  const { pending } = useFormStatus();
   return (
     <div tabIndex={0} className="collapse collapse-arrow border-base-300 bg-base-200">
       <input type="checkbox" defaultChecked />
@@ -83,9 +94,7 @@ export const Settings = ({ onSubmit, applySorting }: Props) => {
             </div>
           </div>
           <div className="flex gap-2 items-start">
-            <button type="submit" className="btn btn-primary btn-sm">
-              Wyślij
-            </button>
+            <SubmitButton />
             <button type="button" onClick={applySorting} className="btn btn-secondary btn-sm">
               Zapisz sortowanie
             </button>

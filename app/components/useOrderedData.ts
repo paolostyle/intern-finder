@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { HospitalData, HospitalsTableProps } from './types';
+import { storeOrder } from '@/actions/storeOrder';
 
 export const useOrderedData = ({ hospitalsData, distanceData }: HospitalsTableProps) => {
   const updateHospitalsData = useCallback(
@@ -24,6 +25,7 @@ export const useOrderedData = ({ hospitalsData, distanceData }: HospitalsTablePr
   const reorderRow = (draggedRowIndex: number, targetRowIndex: number) => {
     orderedData.splice(targetRowIndex, 0, orderedData.splice(draggedRowIndex, 1)[0]);
     setOrderedData([...orderedData]);
+    storeOrder(orderedData);
   };
 
   return { orderedData, setOrderedData, reorderRow };

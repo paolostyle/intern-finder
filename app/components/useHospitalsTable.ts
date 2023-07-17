@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-table';
 import { useOrderedData } from './useOrderedData';
 import { HospitalData, HospitalsTableProps } from './types';
+import { storeOrder } from '@/actions/storeOrder';
 
 const columnHelper = createColumnHelper<HospitalData>();
 
@@ -20,28 +21,28 @@ const columns = [
   columnHelper.accessor('address', {
     header: 'Adres',
   }),
-  columnHelper.accessor('driveData.distance.value', {
+  columnHelper.accessor('drivingDistance.value', {
     id: 'drivingDistance',
     header: 'Odległość',
-    cell: ({ row }) => row.original.driveData?.distance.text,
+    cell: ({ row }) => row.original.drivingDistance?.text,
     sortDescFirst: false,
     meta: {
       isNumeric: true,
     },
   }),
-  columnHelper.accessor('driveData.duration.value', {
+  columnHelper.accessor('drivingDuration.value', {
     id: 'drivingTime',
     header: 'Czas dojazdu (samochodem)',
-    cell: ({ row }) => row.original.driveData?.duration.text,
+    cell: ({ row }) => row.original.drivingDuration?.text,
     sortDescFirst: false,
     meta: {
       isNumeric: true,
     },
   }),
-  columnHelper.accessor('transitData.duration.value', {
+  columnHelper.accessor('transitDuration.value', {
     id: 'transitTime',
     header: 'Czas dojazdu (komunikacją)',
-    cell: ({ row }) => row.original.transitData?.duration.text,
+    cell: ({ row }) => row.original.transitDuration?.text,
     sortDescFirst: false,
     meta: {
       isNumeric: true,
@@ -74,7 +75,11 @@ export const useHospitalsTable = (props: HospitalsTableProps) => {
   });
 
   const applySorting = () => {
-    setOrderedData(table.getRowModel().rows.map((row) => row.original));
+    const newOrderedData = table.getRowModel().rows.map((row) => row.original);
+
+    setOrderedData(newOrderedData);
+    storeOrder(newOrderedData);
+
     table.resetSorting();
   };
 

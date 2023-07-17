@@ -3,7 +3,6 @@
 import { DistanceData, getDistanceData } from '@/actions/getDistanceData';
 import { StaticHospitalData } from '@/actions/getHospitalData';
 import { useState } from 'react';
-import { mapToObj } from 'remeda';
 import { Settings } from './Settings';
 import { DnDTable } from './Table/DnDTable';
 import { useHospitalsTable } from './useHospitalsTable';
@@ -18,18 +17,14 @@ export const PageContent = ({ hospitalsData }: Props) => {
 
   return (
     <>
-      <Settings
-        onSubmit={async (formData) => {
-          const distanceDataList = await getDistanceData(formData, hospitalsData);
-          setDistanceData(
-            mapToObj(distanceDataList, ({ hospitalId, driveData, transitData }) => [
-              hospitalId,
-              { driveData, transitData },
-            ]),
-          );
-        }}
-        applySorting={applySorting}
-      />
+      <div className="flex items-start">
+        <Settings
+          onSubmit={async (formData) =>
+            setDistanceData(await getDistanceData(formData, hospitalsData))
+          }
+          applySorting={applySorting}
+        />
+      </div>
       <DnDTable table={table} reorderRow={reorderRow} />
     </>
   );
