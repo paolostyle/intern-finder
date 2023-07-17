@@ -1,6 +1,6 @@
 'use server';
 
-import fs from 'fs-extra';
+import fs from 'node:fs/promises';
 import readCsv from 'neat-csv';
 import path from 'path';
 

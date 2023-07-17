@@ -1,16 +1,21 @@
-import { Row, flexRender } from '@tanstack/react-table';
+import { Row, RowData, flexRender } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { GripIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { HospitalData } from './types';
+import { HospitalData } from '../types';
 
-type Props = {
-  row: Row<HospitalData>;
+type Props<T extends RowData> = {
+  row: Row<T>;
   reorderRow: (draggedRowIndex: number, targetRowIndex: number) => void;
+  isDraggingDisabled: boolean;
 };
 
-export const DraggableRow = ({ row, reorderRow }: Props) => {
+export const DraggableRow = <T extends RowData>({
+  row,
+  reorderRow,
+  isDraggingDisabled,
+}: Props<T>) => {
   const [hasDropped, setHasDropped] = useState(false);
 
   const [{ dropStyles }, dropRef] = useDrop({
@@ -34,6 +39,7 @@ export const DraggableRow = ({ row, reorderRow }: Props) => {
   });
 
   const [{ isDragging }, dragRef, previewRef] = useDrag({
+    canDrag: !isDraggingDisabled,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -66,9 +72,25 @@ export const DraggableRow = ({ row, reorderRow }: Props) => {
       )}
     >
       <td>
-        <button type="button" ref={dragRef} className="cursor-grab align-text-top">
-          <GripIcon className="h-4 w-4" />
-        </button>
+        <div
+          className="tooltip tooltip-right"
+          data-tip={
+            isDraggingDisabled
+              ? 'Układanie listy jest wyłączone gdy sortowanie jest włączone'
+              : undefined
+          }
+        >
+          <button
+            type="button"
+            ref={dragRef}
+            className={clsx(
+              'align-text-top',
+              isDraggingDisabled ? 'pointer-events-none opacity-20' : 'cursor-grab',
+            )}
+          >
+            <GripIcon className="h-4 w-4" />
+          </button>
+        </div>
       </td>
       {row.getVisibleCells().map((cell) => (
         <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>

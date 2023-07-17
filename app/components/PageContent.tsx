@@ -4,7 +4,9 @@ import { DistanceData, getDistanceData } from '@/actions/getDistanceData';
 import { StaticHospitalData } from '@/actions/getHospitalData';
 import { useState } from 'react';
 import { Settings } from './Settings';
-import { Table } from './Table/Table';
+import { DnDTable } from './Table/DnDTable';
+import { useHospitalsTable } from './useHospitalsTable';
+import { mapToObj } from 'remeda';
 
 interface Props {
   hospitalsData: StaticHospitalData[];
@@ -12,23 +14,22 @@ interface Props {
 
 export const PageContent = ({ hospitalsData }: Props) => {
   const [distanceData, setDistanceData] = useState<Record<number, DistanceData>>();
+  const { applySorting, reorderRow, table } = useHospitalsTable({ hospitalsData, distanceData });
 
   return (
     <>
       <Settings
         onSubmit={async (formData) => {
           const distanceDataList = await getDistanceData(formData, hospitalsData);
-          const normalizedDistanceData = distanceDataList.reduce<Record<number, DistanceData>>(
-            (acc, item) => {
-              acc[item.hospitalId] = item;
-              return acc;
-            },
-            {},
+          setDistanceData(
+            mapToObj(distanceDataList, ({ hospitalId, driveData, transitData }) => [
+              hospitalId,
+              { driveData, transitData },
+            ]),
           );
-          setDistanceData(normalizedDistanceData);
         }}
       />
-      <Table hospitalsData={hospitalsData} distanceData={distanceData} />
+      <DnDTable table={table} reorderRow={reorderRow} />
     </>
   );
 };

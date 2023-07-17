@@ -8,15 +8,12 @@ import {
   TravelMode,
 } from '@googlemaps/google-maps-services-js';
 import { getDistances } from '../utils/getDistance';
-import { getTimestampForNextWeekday } from '../utils/getTimestampForNextWeekday';
+import { getTimestampForNextWeekday } from '../utils/dateUtils';
 import { StaticHospitalData } from './getHospitalData';
+import { isNot } from 'remeda';
 
-const negate =
-  <A extends unknown[]>(fn: (...args: A) => boolean): ((...args: A) => boolean) =>
-  (...args) =>
-    !fn(...args);
 const isHospitalInWarsaw = (hospital: StaticHospitalData) => hospital.address.includes('Warszawa');
-const isNotHospitalInWarsaw = negate(isHospitalInWarsaw);
+const isNotHospitalInWarsaw = isNot(isHospitalInWarsaw);
 
 const mapToDistanceAndDuration = (apiResponseData: DistanceMatrixResponseData[]) =>
   apiResponseData.flatMap(({ rows }) =>
@@ -26,7 +23,6 @@ const mapToDistanceAndDuration = (apiResponseData: DistanceMatrixResponseData[])
   );
 
 export interface DistanceData {
-  hospitalId: number;
   driveData?: {
     distance: Distance;
     duration: Duration;
@@ -37,10 +33,14 @@ export interface DistanceData {
   } | null;
 }
 
+export interface DistanceDataResponse extends DistanceData {
+  hospitalId: number;
+}
+
 export const getDistanceData = async (
   formData: FormData,
   hospitals: StaticHospitalData[],
-): Promise<DistanceData[]> => {
+): Promise<DistanceDataResponse[]> => {
   const origin = formData.get('origin') as string;
   const dayOfTheWeek = Number(formData.get('dayOfTheWeek') as string);
   const arrivalTime = formData.get('arrivalTime') as string;
